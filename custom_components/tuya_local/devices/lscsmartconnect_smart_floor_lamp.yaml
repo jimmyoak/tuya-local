@@ -1,0 +1,126 @@
+name: Smart Floor Lamp
+products:
+  - id: oyvz9kqyvcl7b45n
+    manufacturer: LSC Smart Connect
+    model: Smart Floor Lamp
+entities:
+  - entity: switch
+    name: Master
+    dps:
+      - id: 20
+        name: switch
+        type: boolean
+
+  - entity: light
+    name: Tube
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+      - id: 21
+        type: string
+        name: color_mode
+        mapping:
+          - dps_val: white
+            value: color_temp
+          - dps_val: colour
+            value: hs
+          - dps_val: scene
+            value: Scene
+          - dps_val: music
+            value: Music
+      - id: 24
+        name: rgbhsv
+        type: hex
+        optional: true
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+      - id: 51
+        name: dreamlight_scene
+        type: string
+        optional: true
+      - id: 52
+        name: dreamlight_music_data
+        type: string
+        optional: true
+      - id: 61
+        name: paint_colour_data
+        type: string
+        optional: true
+
+  - entity: light
+    name: Base
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+      - id: 106
+        type: string
+        name: color_mode
+        mapping:
+          - dps_val: white
+            value: color_temp
+          - dps_val: colour
+            value: hs
+          - dps_val: scene
+            value: Scene
+      - id: 103
+        name: brightness
+        type: integer
+        optional: true
+        range:
+          min: 10
+          max: 1000
+        mapping:
+          - dps_val: null
+            value: 0
+      - id: 105
+        name: rgbhsv
+        type: hex
+        optional: true
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+      - id: 107
+        name: scene
+        type: string
+        optional: true
+
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 86399
